@@ -2,6 +2,24 @@
 
 ## 安装 `feature-workflow`
 
+### 一起安装主流程和配套 Skills
+
+下载 [install-feature-workflow.mjs](https://raw.githubusercontent.com/lidongyun120398/skills/main/install-feature-workflow.mjs) 到本地，在下载目录运行对应命令（需要 Node.js、`npx` 和 Git）：
+
+```sh
+# Codex
+node install-feature-workflow.mjs codex
+
+# Claude Code
+node install-feature-workflow.mjs claude-code
+```
+
+脚本默认全局安装。从目标项目运行脚本并加 `--project` 可只装到该项目。它从 [Impeccable](https://github.com/pbakaus/impeccable) 和 [Matt Pocock Skills v1.3.2](https://github.com/mattpocock/skills/tree/v1.3.2) 安装指定的配套 Skills，包括 `impeccable`、`code-review`、`tdd` 和其他按阶段使用的技能。安装器会临时获取上游仓库，无需手动克隆；它可能覆盖目标位置的同名 Skill，有本地定制时请先备份。
+
+安装只添加 Skill 文件。如果正式审查缺少项目的工单配置，可按需运行随附的 `setup-matt-pocock-skills` 配置；安装脚本不会替你初始化项目。
+
+### 只安装主流程
+
 任选与你使用的客户端对应的一条命令（需要 Node.js 和 `npx`）：
 
 **Codex**
@@ -30,4 +48,4 @@ npx skills add lidongyun120398/skills --skill feature-workflow --agent claude-co
 
 Claude Code 不读取 `agents/openai.yaml`。如果也要由客户端强制只允许手动触发，在 Claude Code 本地副本的 `SKILL.md` 顶部 YAML 区块内添加 `disable-model-invocation: true`。
 
-此仓库只安装主流程。`impeccable`、`code-review`、`tdd` 等配套 Skill 不会一起安装；如需对应阶段的完整能力，请在目标客户端另外安装。找不到配套 Skill 时，主流程会记录缺口；所需审查未完成时不标记整体验收通过。
+单独安装或手动下载主流程时，`impeccable`、`code-review`、`tdd` 等配套 Skill 不会一并安装。找不到配套 Skill 时，主流程会记录缺口；所需审查未完成时不标记整体验收通过。
